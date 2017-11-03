@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+
+		<% include ../layouts/partial/head %>
+
+		<!-- page specific plugin styles-->
+
+	</head>
+
+	<body class="no-skin">
+
+		<% include ../layouts/partial/sidebar %>
+
+		<div class="main-container ace-save-state" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.loadState('main-container')}catch(e){}
+			</script>
+
+			<% include ../layouts/panel_left %>
+
+			<div class="main-content">
+			Aca va el contenido
+			</div><!-- /.main-content -->
+
+		<% include ../layouts/partial/comon_footer %>
+
+		<!-- page specific plugin scripts -->
+
+	</body>
+</html>

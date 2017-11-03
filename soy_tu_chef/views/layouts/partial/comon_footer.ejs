@@ -1,0 +1,76 @@
+			<div class="footer">
+				<div class="footer-inner">
+					<div class="footer-content">
+						<span class="bigger-120">
+							<span class="green bolder">ColibriDesarrollos</span>
+							 &copy; 2016
+						</span>
+
+						&nbsp; &nbsp;
+						<span class="action-buttons">
+							<a href="#">
+								<i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
+							</a>
+
+							<a href="#">
+								<i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
+							</a>
+
+							<a href="#">
+								<i class="ace-icon fa fa-rss-square orange bigger-150"></i>
+							</a>
+						</span>
+					</div>
+				</div>
+			</div>
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+			</a>
+
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+		<script src="/public/assets/js/jquery-2.1.4.min.js"></script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script src="/public/assets/js/jquery-1.11.3.min.js"></script>
+<![endif]-->
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='/public/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="/public/assets/js/bootstrap.min.js"></script>
+
+		<script src="/public/assets/js/jquery.validate.min.js"></script>
+		
+		<!-- ace scripts -->
+		<script src="/public/assets/js/ace-elements.min.js"></script>
+		<script src="/public/assets/js/ace.min.js"></script>
+		<script src="/public/assets/js/jquery.gritter.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+			jQuery(function($) {
+			   $('#sidebar2').insertBefore('.page-content');
+			   
+			   $('.navbar-toggle[data-target="#sidebar2"]').insertAfter('#menu-toggler');
+			   
+			   
+			   $(document).on('settings.ace.two_menu', function(e, event_name, event_val) {
+				 if(event_name == 'sidebar_fixed') {
+					 if( $('#sidebar').hasClass('sidebar-fixed') ) {
+						$('#sidebar2').addClass('sidebar-fixed');
+						$('#navbar').addClass('h-navbar');
+					 }
+					 else {
+						$('#sidebar2').removeClass('sidebar-fixed')
+						$('#navbar').removeClass('h-navbar');
+					 }
+				 }
+			   }).triggerHandler('settings.ace.two_menu', ['sidebar_fixed' ,$('#sidebar').hasClass('sidebar-fixed')]);
+			})
+		</script>

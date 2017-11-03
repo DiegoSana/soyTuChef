@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+
+		<% include ../layouts/partial/head %>
+
+		<!-- page specific plugin styles-->
+		<link rel="stylesheet" href="/public/assets/css/jquery.gritter.min.css" />
+
+	</head>
+
+	<body class="no-skin">
+
+		<% include ../layouts/partial/sidebar %>
+
+		<div class="main-container ace-save-state" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.loadState('main-container')}catch(e){}
+			</script>
+
+			<% include ../layouts/panel_left %>
+
+			<div class="main-content">
+				<div class="main-content-inner">
+					<div class="page-content">
+
+					</div>
+					<div style="padding:5em;bottom:0;position:fixed;z-index:98;width:100%">
+						<a href="/menues/create" class="btn btn-success btn-block"><i class="ace-icon fa fa-pencil-square-o"></i> Nuevo menú</a>
+					</div>
+				</div>
+			</div><!-- /.main-content -->
+
+		<% include ../layouts/partial/comon_footer %>
+
+		<!-- page specific plugin scripts -->
+
+		<script src="/public/assets/js/jquery.gritter.min.js"></script>
+
+		<script type="text/javascript">
+		
+
+		<% if(menues) { %>
+			var menues = <%- JSON.stringify(menues) %>;
+			if(menues.length) {
+
+				menues.forEach(function(menu){
+					var caja = '<div class="row">																<div class="col-xs-12 col-sm-12">												<div class="media search-media">										<div class="media-left">														<a href="#">																	<img class="media-object" data-src="holder.js/72x72" alt="72x72" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2272%22%20height%3D%2272%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2072%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_158370e0820%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_158370e0820%22%3E%3Crect%20width%3D%2272%22%20height%3D%2272%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2217.9296875%22%20y%3D%2240.5%22%3E72x72%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" style="width: 72px; height: 72px;">										</a>																	</div>																		<div class="media-body"><div>												<h4 class="media-heading">														<a href="#" class="blue">'+menu.titulo+'</a>								</h4>																	</div>																		<p>'+menu.descripcion+'</p>													<div class="search-actions text-center ">										<span class="grey">$</span>													<span class="grey bolder bigger-125">'+menu.precio+'</span>					  <div class="action-buttons bigger-125 hidden-xs">																			</div><a href="/menues/'+menu._id+'" class="search-btn-action btn btn-sm btn-block btn-grey">Editar</a>				</div>																</div>															</div>														</div>													</div>';
+					$(".page-content").append(caja);
+				});
+			} else {
+
+				$(".page-content").append('<div class="col-xs-12 center"><span class="text-muted">Aún no tiene menues creados</span></div>');
+			}
+		<% } %>
+/*
+		if(location.search.split('mc=')[1]==1) {
+			$.gritter.add({
+				title: 'Menú creado!',
+				class_name: 'center gritter-info gritter-center gritter-light',
+				position: 'center',
+				time: 2000,
+			    after_close: function(){
+			        alert('I am a sticky called after it closes');
+			    }
+			});
+		}*/
+		</script>
+
+	</body>
+</html>

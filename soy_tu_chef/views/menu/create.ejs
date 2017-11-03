@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+
+		<% include ../layouts/partial/head %>
+
+		<!-- page specific plugin styles-->
+
+	</head>
+
+	<body class="no-skin">
+
+		<% include ../layouts/partial/sidebar %>
+
+		<div class="main-container ace-save-state" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.loadState('main-container')}catch(e){}
+			</script>
+
+			<% include ../layouts/panel_left %>
+
+			<div class="main-content">
+				<div class="main-content-inner">
+					<div class="page-content">
+						<div class="col-xs-12 col-lg-8">	
+							<form id="create-menu-form">					
+								<div>
+									<label for="form-field-8">Título del menú</label>
+
+									<input type="text" name="titulo" class="form-control" id="titulo" placeholder="Título del menú"/>
+								</div>
+
+								<hr>
+
+								<div>
+									<label for="form-field-select-1">Tipo de servicio</label>
+
+									<select class="form-control" id="tipoMenu" name="tipoMenu">
+										<option value="">Seleccione el tipo de servicio</option>
+										<option value="1">Comida en casa del chef</option>
+										<option value="4">Retiro y envio a domicilio</option>
+										<option value="2">Solo envio a domicilio</option>
+										<option value="3">Solo retiro</option>
+									</select>
+								</div>
+
+								<hr>
+								
+								<button type="submit" class="btn btn-sm btn-success btn-block submitBtn">Crear<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i></button>
+							</form>
+						</div>
+						
+					</div>
+				</div>
+			</div><!-- /.main-content -->
+
+		<% include ../layouts/partial/comon_footer %>
+
+		<!-- page specific plugin scripts -->
+		<script type="text/javascript">
+			jQuery(function($) {
+
+					$("#create-menu-form").validate({
+						rules:{
+						    titulo: {
+						      required: true,
+						      minlength: 2,
+						      maxlength: 40
+						    },
+						    tipoMenu: {
+						    	required: true
+						    }
+						},
+						messages: {
+							titulo: {
+							  	required: "Debes ingresar un título para el menú",
+								minlength: "El título debe tener más de 2 caracteres",
+								maxlength: "El título debe tener menos de 40 caracteres"
+							},
+							tipoMenu: {
+								required: "Debe seleccionar un tipo de servicio",
+							}
+						},
+						onkeyup: false,
+					  	errorPlacement: function(error, element) {
+					    	error.appendTo( element.parent() );
+							element.parent().removeClass('has-success');
+					    	element.parent().parent().removeClass('has-success');
+							//element.parent().addClass('has-error');
+					    	//element.parent().parent().addClass('has-error');
+					  	},
+					    onfocusout: function (element) {
+					        $(element).valid();
+					    },
+					    success: function(label, element){
+					    	label.parent().addClass('has-success');
+					    	label.parent().parent().addClass('has-success');
+					    	label.remove();				    	
+					    },
+					    errorClass: "text-danger",
+					    errorElement: "em",
+					    submitHandler: function() { 
+							$.ajax({
+
+								method: "POST",
+							  	url: "/menues/",
+							  	data: {
+							  		titulo: $('#create-menu-form input[name=titulo]').val(),
+							  		tipoMenu: $('#create-menu-form select[name=tipoMenu]').val()
+							  	}
+
+							}).done(function( msg ) {
+
+							    if(msg.status) {
+									$.gritter.add({
+										title: 'Menú creado!',
+										class_name: 'center gritter-info gritter-light',
+										time: 1500,
+										speed: 'fast',
+									    after_close: function(){
+									        window.location.href = "/menues";
+									    }
+									});							    	
+							    }else{
+							    	
+							    	$.each(msg.msg.errors, function(key, val){
+							    		$('<em id="'+key+'-error" class="text-danger">'+val.message+'</em>').appendTo($('#create-menu-form select[name='+key+'], #create-menu-form input[name='+key+']').parent());
+							    	});
+
+							    }
+
+							});
+					    }
+					});
+			});
+		</script>
+	</body>
+</html>

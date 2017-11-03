@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+
+		<% include ../layouts/partial/head %>
+
+		<!-- page specific plugin styles-->
+		<link rel="stylesheet" href="/public/assets/css/bootstrap-multiselect.min.css" />
+		<link rel="stylesheet" href="/public/assets/css/select2.min.css" />
+		<link rel="stylesheet" href="/public/assets/css/bootstrap-datepicker3.min.css" />
+		<link rel="stylesheet" href="/public/assets/css/bootstrap-timepicker.min.css" />
+
+	</head>
+
+	<body class="no-skin">
+
+		<% include ../layouts/partial/sidebar %>
+
+		<div class="main-container ace-save-state" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.loadState('main-container')}catch(e){}
+			</script>
+
+			<% include ../layouts/panel_left %>
+
+			<div class="main-content">
+				<div class="main-content-inner">
+					<div class="page-content">
+						<div class="col-xs-12 col-lg-8">	
+							<form id="update-menu-form">
+								<div class="widget-main">
+									<div id="fuelux-wizard-container" class="no-steps-container">
+										<div>
+											<ul class="steps" style="margin-left: 0">
+												<li data-step="1" class="active">
+													<span class="step">1</span>
+													<span class="title">Información de la propuesta</span>
+												</li>
+
+												<li data-step="2" class="">
+													<span class="step">2</span>
+													<span class="title">Información de entrega</span>
+												</li>
+
+												<li data-step="3" class="">
+													<span class="step">3</span>
+													<span class="title">Fotos</span>
+												</li>
+
+												<li data-step="4" class="">
+													<span class="step">4</span>
+													<span class="title">Other Info</span>
+												</li>
+											</ul>
+										</div>
+
+										<hr>
+
+										<div class="step-content pos-rel">
+											<div class="step-pane active" data-step="1">
+												<div>
+													<label for="titulo">Título del menú</label>
+
+													<input type="text" name="titulo" class="form-control" id="titulo" placeholder="Título del menú"/>
+												</div>
+
+												<hr>
+
+												<div>
+													<label for="tipoMenu">Tipo de servicio</label>
+
+													<select class="form-control" id="tipoMenu" name="tipoMenu">
+														<option value="">Seleccione el tipo de servicio</option>
+														<option value="1">Comida en casa del chef</option>
+														<option value="4">Retiro y envio a domicilio</option>
+														<option value="2">Solo envio a domicilio</option>
+														<option value="3">Solo retiro</option>
+													</select>
+												</div>
+
+												<hr>
+
+												<div>
+													<label for="descripcion">Descripción de la propuesta</label>
+
+													<textarea class="form-control" name="descripcion" id="descripcion" placeholder="Que es, que contiene, como se preparo, para cuantas personas, etc."></textarea>
+												</div>
+
+												<hr>
+
+												<div>
+													<label for="cantidad">Cantidad total de platos que puede ofrecer</label>
+
+													<input type="text" class="input-sm spinbox-input form-control text-center" name="cantidad" id="cantidad">
+												</div>
+
+												<hr>
+
+												<div>
+													<label for="precio">Precio del plato  $</label>
+
+													<input class="input-medium input-mask-eyescript" type="text" id="precio" name="precio">
+												</div>
+
+												<hr>
+
+												<div>
+													<label for="tags">Tipo de comida<small class="text-warning">(puedes seleccionar más de uno)</small></label>
+
+													<div class="col-xs-12">
+														<select multiple="" id="tags" name="tags" class="select2 select2-hidden-accessible" data-placeholder="Selecciona los tipos de comida" style="width: 200px;" tabindex="-1" aria-hidden="true">
+															<option value="1">Comida de autor</option>
+															<option value="Argentina">Argentina</option>
+															<option value="Mexicana">Mexicana</option>
+														</select>
+
+													</div>
+												</div>
+
+												<hr>
+											</div>
+
+											<div class="step-pane" data-step="2">
+												<div>
+													<label for="ubicacion">Ubicación <small class="text-warning">(Es obligatorio si haces SOLO entrega a domicilio)</small></label>
+													<div class="input-group">
+														<input class="form-control" onFocus="geolocate()" type="text" id="ubicacion" name="ubicacion" placeholder="Ingrese la ubicacion">
+														<span class="input-group-btn">
+															<button onclick="setUbicacion(true)" class="btn btn-sm btn-default" type="button">
+																<i class="ace-icon glyphicon glyphicon-map-marker bigger-110"></i>
+															</button>
+														</span>
+													</div>	
+												</div>
+												<br>
+												<div>
+													<div class="form-inline">
+														<input class="input-small" type="text" id="calle" name="calle" placeholder="Calle" disabled="true">
+														<input class="input-small" type="text" id="numero" name="numero" placeholder="Número" disabled="true">
+														<input class="input-small" type="text" id="ciudad" name="ciudad" placeholder="Ciudad" disabled="true">
+														<input class="input-small" type="text" id="pais" name="pais" placeholder="Pais" disabled="true">
+														<input class="input-small" type="text" id="latitud" name="latitud" hidden="true" disabled="true">
+														<input class="input-small" type="text" id="longitud" name="longitud" hidden="true" disabled="true">
+													</div>
+												</div>
+
+												<hr>
+
+												<div>
+													<label for="horarioDesde">Fecha de la propuesta</label>
+													<div class="input-group">
+														<input class="form-control date-picker" id="fechaOferta" name="fechaOferta" type="text" data-date-format="dd-mm-yyyy">
+														<span class="input-group-addon">
+															<i class="fa fa-calendar bigger-110"></i>
+														</span>
+													</div>
+												</div>												
+
+												<hr>
+
+												<div>
+													<label for="horarioDesde">Horarios de entrega</label>
+													<div class="form-inline bootstrap-timepicker">
+														<span class="text-warning">Desde</span>
+														<input class="input-small" id="horarioDesde" name="horarioDesde" type="text" >
+														<span class="">
+															<i class="fa fa-calendar bigger-110"></i>
+														</span>
+														<span class="text-warning"> hasta </span>
+														<input class="input-small" id="horarioHasta" name="horarioHasta" type="text" >
+														<span class="">
+															<i class="fa fa-calendar bigger-110"></i>
+														</span>
+													</div>
+												</div>
+
+											</div>
+
+											<div class="step-pane" data-step="3">
+												
+											</div>
+
+											<div class="step-pane" data-step="4">
+												
+											</div>
+										</div>
+									</div>
+
+									<hr>
+									<div class="wizard-actions">
+										<button type="button" class="btn btn-prev" disabled="disabled">
+											<i class="ace-icon fa fa-arrow-left"></i>
+											Volver
+										</button>
+
+										<button type="button" class="btn btn-success btn-next" data-last="Finish">
+											Siguiente
+											
+										<i class="ace-icon fa fa-arrow-right icon-on-right"></i></button>
+									</div>
+								</div>
+							</form>
+						</div>
+						
+					</div>
+				</div>
+			</div><!-- /.main-content -->
+
+		<% include ../layouts/partial/comon_footer %>
+
+		<!-- page specific plugin scripts -->
+		<script src="/public/assets/js/jquery-ui.custom.min.js"></script>
+		<script src="/public/assets/js/wizard.min.js"></script>
+		<script src="/public/assets/js/spinbox.min.js"></script>
+		<script src="/public/assets/js/jquery.maskedinput.min.js"></script>
+		<script src="/public/assets/js/bootstrap-multiselect.min.js"></script>
+		<script src="/public/assets/js/select2.min.js"></script>	
+		<script src="/public/assets/js/bootbox.js"></script>	
+		<script src="/public/assets/js/bootstrap-datepicker.min.js"></script>
+		<script src="/public/assets/js/bootstrap-timepicker.min.js"></script>
+		<script src="/public/assets/js/datepicker-es.js"></script>
+
+		<script type="text/javascript">
+			jQuery(function($) {
+
+				menu = <%- JSON.stringify(menu) %>;
+				$.each(menu, function(key, val){
+					if(key == 'fechaOferta')
+					{
+						var date = new Date(val);
+						val = date.getDate()+'-' + (date.getMonth()+1) + '-'+date.getFullYear();
+					}
+					if(key != 'ubicacion')
+						$('#update-menu-form #'+key).val(val);
+				});
+
+
+				$('#cantidad').ace_spinner({value:0,min:0,max:200,step:1, btn_up_class:'btn-info' , btn_down_class:'btn-info'})
+				.closest('.ace-spinner')
+				.on('changed.fu.spinbox', function(){
+					//console.log($('#spinner1').val())
+				}); 
+				$("#precio").mask("999.99");
+				$(".select2").css("width","100%").select2({allowClear:true});
+
+				$('.date-picker').datepicker({
+					autoclose: true,
+					todayHighlight: true
+				})
+				//show datepicker when clicking on the icon
+				.next().on(ace.click_event, function(){
+					$(this).prev().focus();
+				});
+
+				$('#horarioDesde,#horarioHasta').timepicker({
+					minuteStep: 1,
+					showSeconds: false,
+					showMeridian: true,
+					disableFocus: true,
+					icons: {
+						up: 'fa fa-chevron-up',
+						down: 'fa fa-chevron-down'
+					}
+				}).on('focus', function() {
+					$('#timepicker1').timepicker('showWidget');
+				}).next().on(ace.click_event, function(){
+					$(this).prev().focus();
+				});
+
+				var $validation = true;
+				$('#fuelux-wizard-container')
+				.ace_wizard({
+					//step: 2 //optional argument. wizard will jump to step "2" at first
+					//buttons: '.wizard-actions:eq(0)'
+				})
+				.on('actionclicked.fu.wizard' , function(e, info){
+					if(info.step == 1 && $validation) {
+						if(!$('#precio,#cantidad,#descripcion,#tipoMenu,#titulo,#tags').valid())
+							e.preventDefault();
+						
+						save(setUbicacion(false));
+					}
+					if(info.step == 2 && $validation) {
+						if(!$('#ubicacion,#fechaOferta,#hora').valid())
+							e.preventDefault();
+						
+						save();						
+					}
+					
+				})
+				//.on('changed.fu.wizard', function() {
+				//})
+				.on('finished.fu.wizard', function(e) {
+					bootbox.dialog({
+						message: "Thank you! Your information was successfully saved!", 
+						buttons: {
+							"success" : {
+								"label" : "OK",
+								"className" : "btn-sm btn-primary"
+							}
+						}
+					});
+				}).on('stepclick.fu.wizard', function(e){
+					//e.preventDefault();//this will prevent clicking and selecting steps
+				});
+
+				$("#update-menu-form").validate({
+					rules:{
+					    titulo: {
+					      required: true,
+					      minlength: 2,
+					      maxlength: 40
+					    },
+					    tipoMenu: {
+					    	required: true
+					    },
+					    descripcion: {
+					    	required: true,
+					    	minlength: 2,
+					    	maxlength: 300
+					    },
+					    cantidad: {
+					    	required: true,
+					    	number: true,
+					    	range: [2, 1000]
+					    },
+					    precio: {
+					    	required: true,
+					    	number: true,
+					    	range: [1,10000]
+					    },
+					    tags: {
+					    	required: true
+					    }
+					},
+					messages: {
+						titulo: {
+						  	required: "Debes ingresar un título para el menú",
+							minlength: "El título debe tener más de 2 caracteres",
+							maxlength: "El título debe tener menos de 40 caracteres"
+						},
+						tipoMenu: {
+							required: "Debe seleccionar un tipo de servicio",
+						},
+					    descripcion: {
+						  	required: "Debes ingresar una descripción para el menú",
+							minlength: "La descripción debe tener más de 2 caracteres",
+							maxlength: "La descripción debe tener menos de 300 caracteres"
+					    },
+					    cantidad: {
+					    	required: "Debe ingresar una cantidad de menues ofrecidos",
+					    	number: "La cantidad de platos debe ser un dígito numérico",
+					    	range: "Debe ingresar una cantidad entre 1 y 1000"
+					    },
+					    precio: {
+					    	required: "Debe ingresar un precio para el menú",
+					    	number: "La cantidad de platos debe ser un dígito numérico",
+					    	range: "Debe ingresar un precio entre 1 y 10000"
+					    },
+					    tags: {
+					    	required: "Debe ingresar al menos un tipo de comida"
+					    }
+					},
+					onkeyup: false,
+				  	errorPlacement: function(error, element) {
+				  		if(element.attr("id")=="cantidad")
+				  			error.appendTo( element.parent().parent().parent() );
+				  		else
+				    		error.appendTo( element.parent() );
+						element.parent().removeClass('has-success');
+				    	element.parent().parent().removeClass('has-success');
+						//element.parent().addClass('has-error');
+				    	//element.parent().parent().addClass('has-error');
+				  	},
+				    onfocusout: function (element) {
+				        $(element).valid();
+				    },
+				    success: function(label, element){
+				    	label.parent().addClass('has-success');
+				    	label.parent().parent().addClass('has-success');
+				    	label.remove();				    	
+				    },
+				    errorClass: "text-danger",
+				    errorElement: "em",
+				    submitHandler: function() { 
+				    	save();
+				    }
+				});
+
+				var save = function(callback) {
+
+						var datos = {
+					  		titulo: $('#update-menu-form input[name=titulo]').val(),
+					  		tipoMenu: $('#update-menu-form select[name=tipoMenu]').val(),
+					  		descripcion: $('#update-menu-form textarea[name=descripcion]').val(),
+					  		cantidad: $('#update-menu-form input[name=cantidad]').val(),
+					  		precio: $('#update-menu-form input[name=precio]').val(),
+					  		tags: $('#update-menu-form select[name=tags]').val(),
+					  		pais: $('#update-menu-form input[name=pais]').val(),
+					  		calle: $('#update-menu-form input[name=calle]').val(),
+					  		numero: $('#update-menu-form input[name=numero]').val(),
+					  		ciudad: $('#update-menu-form input[name=ciudad]').val(),
+					  		latitud: $('#update-menu-form input[name=latitud]').val(),
+					  		longitud: $('#update-menu-form input[name=longitud]').val(),
+					  		fechaOferta: $('#update-menu-form input[name=fechaOferta]').val(),
+					  		horarioDesde: $('#update-menu-form input[name=horarioDesde]').val(),
+					  		horarioHasta: $('#update-menu-form input[name=horarioHasta]').val()
+					  	};
+
+						$.ajax({
+							traditional: true,
+							method: "put",
+						  	url: "/menues/"+menu._id,
+						  	data: datos
+
+						}).done(function( msg ) {
+
+							callback;
+						    if(msg.status) {
+								$.gritter.add({
+									title: 'Menú actualizado!',
+									class_name: 'center gritter-info gritter-light',
+									time: 1500,
+									speed: 'fast',
+								    after_close: function(){
+								        //window.location.href = "/menues";
+								    }
+								});							    	
+						    }else{
+						    	
+						    	$.each(msg.msg.errors, function(key, val){
+						    		$('<em id="'+key+'-error" class="text-danger">'+val.message+'</em>').appendTo($('#update-menu-form select[name='+key+'], #update-menu-form input[name='+key+']').parent());
+						    	});
+
+						    }
+
+						});
+				}
+			});
+
+
+
+			// This example displays an address form, using the autocomplete feature
+			// of the Google Places API to help users fill in the information.
+
+			var placeSearch, autocomplete;
+			var componentForm = {
+			  street_number: ['numero','short_name'],
+			  route: ['calle','long_name'],
+			  locality: ['ciudad','long_name'],
+			  administrative_area_level_1: ['prov','short_name'],
+			  country: ['pais','long_name'],
+			  postal_code: ['codigo','short_name']
+			};
+
+			function initAutocomplete() {
+			  // Create the autocomplete object, restricting the search to geographical
+			  // location types.
+			  autocomplete = new google.maps.places.Autocomplete(
+			      /** @type {!HTMLInputElement} */(document.getElementById('ubicacion')),
+			      {types: ['geocode']});
+
+			  // When the user selects an address from the dropdown, populate the address
+			  // fields in the form.
+			  autocomplete.addListener('place_changed', fillInAddress);
+
+			  geocoder = new google.maps.Geocoder;
+			}
+
+			// [START region_fillform]
+			function fillInAddress(currentPlace) {
+				// Get the place details from the autocomplete object.
+				if(!currentPlace)
+					var place = autocomplete.getPlace();
+				else
+					var place = currentPlace;
+
+				$.each(componentForm, function(k,v){
+					if(document.getElementById(v[0])) document.getElementById(v[0]).value = '';
+					if(document.getElementById(v[0])) document.getElementById(v[0]).disabled = false;
+				});
+
+				// Get each component of the address from the place details
+				// and fill the corresponding field on the form.
+				for (var i = 0; i < place.address_components.length; i++) {
+					var addressType = place.address_components[i].types[0];
+					if (componentForm[addressType]) {
+						var val = place.address_components[i][componentForm[addressType][1]];
+						if(document.getElementById(componentForm[addressType][0])) document.getElementById(componentForm[addressType][0]).value = val;
+					}
+				}
+				document.getElementById('latitud').value = place.geometry.location.lat();
+				document.getElementById('longitud').value = place.geometry.location.lng();
+			}
+			// [END region_fillform]
+
+			// [START region_geolocation]
+			// Bias the autocomplete object to the user's geographical location,
+			// as supplied by the browser's 'navigator.geolocation' object.
+			function geolocate() {
+			  if (navigator.geolocation) {
+			    navigator.geolocation.getCurrentPosition(function(position) {
+			      var geolocation = {
+			        lat: position.coords.latitude,
+			        lng: position.coords.longitude
+			      };
+			      var circle = new google.maps.Circle({
+			        center: geolocation,
+			        radius: position.coords.accuracy
+			      });
+			      autocomplete.setBounds(circle.getBounds());
+			    });
+			  }
+			}
+
+			function setUbicacion(actual){
+
+				if(!actual && menu.ubicacion) {
+					geocoder.geocode({'location': new google.maps.LatLng(menu.ubicacion.latitud, menu.ubicacion.longitud)}, function(results, status) {
+						if (results[0]) {
+							$("#ubicacion").val(results[0].formatted_address);
+							fillInAddress(results[0]);
+						}
+					});
+
+				} else if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(function(position) {			    	
+						var geolocation = {
+							lat: position.coords.latitude,
+							lng: position.coords.longitude
+						};
+						geocoder.geocode({'location': geolocation}, function(results, status) {
+							if (results[0]) {
+								$("#ubicacion").val(results[0].formatted_address);
+								fillInAddress(results[0]);
+							}
+						});
+					});
+				}
+			};
+						
+			// [END region_geolocation]
+
+	    </script>
+	    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDreqP4ZDsC99o3rFH8kfV9zIGm6x9Z2vE&signed_in=true&libraries=places&callback=initAutocomplete"
+	        async defer></script>
+	</body>
+</html>

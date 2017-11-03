@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+
+		<% include ../layouts/partial/head %>
+		<!-- page specific plugin styles VER COMO CARGARLOS DINAMICAMENTE POR CADA PAGINA -->
+		<link rel="stylesheet" href="/public/assets/css/jquery-ui.custom.min.css" />
+		<link rel="stylesheet" href="/public/assets/css/jquery.gritter.min.css" />
+		<link rel="stylesheet" href="/public/assets/css/select2.min.css" />
+		<link rel="stylesheet" href="/public/assets/css/bootstrap-datepicker3.min.css" />
+		<link rel="stylesheet" href="/public/assets/css/bootstrap-editable.min.css" />
+	</head>
+
+	<body class="no-skin">
+
+		<% include ../layouts/partial/sidebar %>
+
+		<style type="text/css">
+			.gritter-center{position:fixed;left:33%;right:33%;top:33%}
+		</style>
+		<div class="main-container ace-save-state" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.loadState('main-container')}catch(e){}
+			</script>
+
+			<% include ../layouts/panel_left %>
+
+			<div class="main-content">
+				<div class="main-content-inner">
+					<div class="page-content">
+
+						<div class="page-header">
+							<h1>
+								Diego Sanabria
+								<small>
+									<i class="ace-icon fa fa-angle-double-right"></i>
+									Información de perfil
+								</small>
+							</h1>
+						</div><!-- /.page-header -->
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<div class="clearfix">
+									<div class="pull-right">
+										<button class="btn btn-primary editProfile">
+											<i class="ace-icon fa fa-pencil-square-o align-top bigger-125"></i>
+											Editar
+										</button>
+									</div>
+								</div>
+
+								<div>
+									<div id="user-profile-1" class="user-profile">
+										<div class="tabbable">
+											<div class="tab-content no-border padding-24">
+												<div id="home" class="tab-pane in active">
+													<div class="row">								
+
+														<div class="col-xs-12 col-sm-3 center">
+															<span class="profile-picture">
+																<img class="editable img-responsive profileImage" alt="Avatar" src="/public/assets/images/avatars/chef.png" />
+															</span>
+
+															<div class="space space-4"></div>
+														</div><!-- /.col -->
+
+														<div class="col-xs-12 col-sm-9">
+															<h4 class="blue">
+																<span class="middle val-nombre"></span>
+															</h4>
+
+															<div class="profile-user-info">
+																<div class="profile-info-row">
+																	<div class="profile-info-name"> Nombre </div>
+
+																	<div class="profile-info-value">
+																		<span class="val-nombre"></span>
+																	</div>
+																</div>
+
+																<div class="profile-info-row">
+																	<div class="profile-info-name"> Email </div>
+
+																	<div class="profile-info-value">
+																		<span class="val-email"></span>
+																	</div>
+																</div>
+
+																<div class="profile-info-row">
+																	<div class="profile-info-name"> Sitio web </div>
+
+																	<div class="profile-info-value">
+																		<a href="#" target="_blank" class="val-web"></a>
+																	</div>
+																</div>
+
+																<div class="profile-info-row">
+																	<div class="profile-info-name">
+																		<i class="middle ace-icon fa fa-facebook-square bigger-150 blue"></i>
+																	</div>
+
+																	<div class="profile-info-value">
+																		<a href="#" target="_blank" class="val-facebook"></a>
+																	</div>
+																</div>
+
+																<div class="profile-info-row">
+																	<div class="profile-info-name">
+																		<i class="middle ace-icon fa fa-twitter-square bigger-150 light-blue"></i>
+																	</div> 
+
+																	<div class="profile-info-value">
+																		<a href="#" target="_blank" class="val-instagram"></a>
+																	</div>
+																</div>
+
+																<div class="profile-info-row">
+																	<div class="profile-info-name"> Miembro desde </div>
+
+																	<div class="profile-info-value">
+																		<span class="val-fecha"></span>
+																	</div>
+																</div>
+
+																<div class="profile-info-row">
+																	<div class="profile-info-name"> Ultima conección </div>
+
+																	<div class="profile-info-value">
+																		<span class="val-ultima-coneccion"></span>
+																	</div>
+																</div>
+
+															</div>
+
+															<div class="hr hr-8 dotted"></div>
+
+														</div><!-- /.col -->
+													</div><!-- /.row -->
+
+													<div class="space-20"></div>
+
+													<div class="row">
+														<div class="col-xs-12 col-sm-6">
+															<div class="widget-box transparent">
+																<div class="widget-header widget-header-small">
+																	<h4 class="widget-title smaller">
+																		<i class="ace-icon fa fa-check-square-o bigger-110"></i>
+																		Sobre mi
+																	</h4>
+																</div>
+
+																<div class="widget-body">
+																	<div class="widget-main val-descripcion"></div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div><!-- /#home -->
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="hide">
+									<div id="user-profile-2" class="user-profile row">
+										<div class="col-sm-offset-1 col-sm-10">
+
+											<div class="space"></div>
+
+											<form class="form-horizontal" id="update-form">
+												<div class="tabbable">
+													<ul class="nav nav-tabs padding-16">
+														<li class="active">
+															<a data-toggle="tab" href="#edit-basic">
+																<i class="green ace-icon fa fa-pencil-square-o bigger-125"></i>
+																Información de usuario
+															</a>
+														</li>
+
+														<li>
+															<a data-toggle="tab" href="#edit-password">
+																<i class="blue ace-icon fa fa-key bigger-125"></i>
+																Contraseña
+															</a>
+														</li>
+													</ul>
+
+													<div class="tab-content profile-edit-tab-content">
+														<div id="edit-basic" class="tab-pane in active">
+
+															<div class="row">
+																<div class="col-xs-12 col-sm-3">
+
+																	<div class="space-20"></div>
+
+																	<span style="cursor: pointer;" class="profile-picture">
+																		<img class="editable img-responsive profileImage" alt="Alex's Avatar" id="avatar" src="/public/assets/images/avatars/chef.png" />
+																	</span>
+																	<br/>
+																	<em class="text-muted">Click en la imágen para cambiar tu foto</em>
+																</div>
+
+																<div class="col-xs-12 col-sm-6">
+
+																	<h4 class="header blue bolder smaller">Social</h4>
+
+																	<div class="form-group text-left">
+																		<label class="col-sm-3 control-label no-padding-right" for="form-field-nombre">Nombre</label>
+
+																		<div class="col-sm-9">
+																			<input class="col-xs-12 col-sm-10" type="text" name="nombre" id="form-field-nombre" placeholder="Nombre" value="" />
+																		</div>
+																	</div>
+
+																	<div class="space-4"></div>
+
+																	<div class="form-group">
+																		<label class="col-sm-3 control-label no-padding-right" for="form-field-email">Email</label>
+
+																		<div class="col-sm-9">
+																			<span class="col-xs-12 col-sm-10 input-icon input-icon-right no-padding-left no-padding-right ">
+																				<input class="col-xs-12 col-sm-12" type="email" id="form-field-email" name="email" value="" />
+																				<i class="ace-icon fa fa-envelope"></i>
+																			</span>
+																		</div>
+																	</div>
+
+																	<div class="space-4"></div>
+
+																	<div class="form-group">
+																		<label class="col-sm-3 control-label no-padding-right" for="form-field-fecha-nacimiento">Fecha de nacimiento</label>
+
+																		<div class="col-sm-9">
+																			<span class="col-xs-12 col-sm-10 input-icon input-icon-right no-padding-left no-padding-right ">
+																				<input class="col-xs-12 col-sm-12 date-picker" type="email" id="form-field-fecha-nacimiento" name="fecha_nacimiento" value="" data-date-format="dd-mm-yyyy" placeholder="dd-mm-yyyy" />
+																				<i class="ace-icon fa fa-calendar"></i>
+																			</span>
+																		</div>
+																	</div>
+
+																	<div class="space-4"></div>
+
+																	<div class="form-group">
+																		<label class="col-sm-3 control-label no-padding-right" for="form-field-descripcion">Sobre mi</label>
+
+																		<div class="col-sm-9">
+																			<textarea name="descripcion" id="form-field-descripcion" class="col-xs-12 col-sm-10"></textarea>
+																		</div>
+																	</div>
+
+																	<div class="space-4"></div>
+
+																	<!--
+																	<div class="space-4"></div>
+																	
+																	<div class="form-group">
+																		<label class="col-sm-3 control-label no-padding-right" for="form-field-telefono">Telefono</label>
+
+																		<div class="col-sm-9">
+																			<span class="col-xs-12 col-sm-10 no-padding-right no-padding-left input-icon input-icon-right">
+																				<input class="input-mask-phone col-xs-12 col-sm-12" type="text" id="form-field-telefono" />
+																				<i class="ace-icon fa fa-phone fa-flip-horizontal"></i>
+																			</span>
+																		</div>
+																	</div>
+																	-->
+																	<div class="space"></div>
+																	<h4 class="header blue bolder smaller">Social</h4>
+
+																	<div class="form-group">
+																		<label class="col-sm-3 control-label no-padding-right" for="form-field-web">Sitio web</label>
+
+																		<div class="col-sm-9">
+																			<span class="col-xs-12 col-sm-10 no-padding-right no-padding-left input-icon input-icon-right">
+																				<input name="web" class="col-xs-12 col-sm-12" type="url" id="form-field-web" value="" />
+																				<i class="ace-icon fa fa-globe"></i>
+																			</span>
+																		</div>
+																	</div>
+
+																	<div class="form-group">
+																		<label class="col-sm-3 control-label no-padding-right" for="form-field-facebook">Facebook</label>
+
+																		<div class="col-sm-9">
+																			<span class="input-icon">
+																				<input name="facebook" type="text" value="" id="form-field-facebook" />
+																				<i class="ace-icon fa fa-facebook blue"></i>
+																			</span>
+																		</div>
+																	</div>
+
+																	<div class="space-4"></div>
+
+																	<div class="form-group">
+																		<label class="col-sm-3 control-label no-padding-right" for="form-field-instagram">Instagram</label>
+
+																		<div class="col-sm-9">
+																			<span class="input-icon">
+																				<input name="instagram" type="text" value="" id="form-field-instagram" />
+																				<i class="ace-icon fa fa-twitter light-blue"></i>
+																			</span>
+																		</div>
+																	</div>
+																</div>	
+															</div>
+
+
+														</div>
+
+														<div id="edit-password" class="tab-pane">
+															<div class="space-10"></div>
+
+															<div class="form-group">
+																<label class="col-sm-3 control-label no-padding-right" for="form-field-pass1">Nueva Contraseña</label>
+
+																<div class="col-sm-9">
+																	<input type="password" id="form-field-pass1" />
+																</div>
+															</div>
+
+															<div class="space-4"></div>
+
+															<div class="form-group">
+																<label class="col-sm-3 control-label no-padding-right" for="form-field-pass2">Confirmación de Contraseña</label>
+
+																<div class="col-sm-9">
+																	<input type="password" id="form-field-pass2" />
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<div class="clearfix form-actions">
+													<div class="col-xs-12 col-md-12 center">
+														<button class="btn btn-info" type="submit" type="button">
+															<i class="ace-icon fa fa-check bigger-110"></i>
+															Save
+														</button>
+
+														&nbsp; &nbsp;
+														<button class="btn" type="reset">Cancel</button>
+													</div>
+												</div>
+											</form>
+										</div><!-- /.span -->					
+									</div><!-- /.user-profile -->
+								</div>
+
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+
+		<% include ../layouts/partial/comon_footer %>
+
+		<!-- page specific plugin scripts VER COMO INCLUIRLOS DINAMICAMENTE POR CADA PAGINA-->
+
+		<!--[if lte IE 8]>
+		  <script src="assets/js/excanvas.min.js"></script>
+		<![endif]-->
+		<script src="/public/assets/js/jquery-ui.custom.min.js"></script>
+		<script src="/public/assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="/public/assets/js/jquery.gritter.min.js"></script>
+		<script src="/public/assets/js/bootbox.js"></script>
+		<script src="/public/assets/js/jquery.easypiechart.min.js"></script>
+		<script src="/public/assets/js/bootstrap-datepicker.min.js"></script>
+		<script src="/public/assets/js/jquery.hotkeys.index.min.js"></script>
+		<script src="/public/assets/js/bootstrap-wysiwyg.min.js"></script>
+		<script src="/public/assets/js/select2.min.js"></script>
+		<script src="/public/assets/js/spinbox.min.js"></script>
+		<script src="/public/assets/js/bootstrap-editable.min.js"></script>
+		<script src="/public/assets/js/ace-editable.min.js"></script>
+		<script src="/public/assets/js/jquery.maskedinput.min.js"></script>
+
+		<script type="text/javascript">
+			jQuery(function($) {
+
+				// *** editable avatar *** //
+				try {//ie8 throws some harmless exceptions, so let's catch'em
+			
+					//first let's add a fake appendChild method for Image element for browsers that have a problem with this
+					//because editable plugin calls appendChild, and it causes errors on IE at unpredicted points
+					try {
+						document.createElement('IMG').appendChild(document.createElement('B'));
+					} catch(e) {
+						Image.prototype.appendChild = function(el){}
+					}
+				
+					var usuario = <%- JSON.stringify(user) %>;
+					$.each(usuario, function(key, val){
+						$('.val-'+key).html(val);
+						$('#form-field-'+key).val(val);
+					});
+					if(usuario.image) {
+						$('.profileImage').attr('src','/public/images/profile/150x150/'+usuario.image);
+					}
+
+					$("#update-form").validate({
+						rules:{
+						    email: {
+						      required: true,
+						      email: true
+						    },
+						    nombre: {
+						    	required: true,
+								minlength: 2,
+								maxlength: 40
+						    },
+						    password: {
+						    	required: true,
+						    	minlength: 4,
+						    	maxlength: 15
+						    },
+						    re_password: {
+						    	required: true,
+						    	minlength: 4,
+						    	maxlength: 15,
+						    	equalTo: "#password"
+						    },
+						    web: {
+								minlength: 4,
+								maxlength: 100
+						    },
+						    facebook: {
+								minlength: 4,
+								maxlength: 100
+						    },
+						    instagram: {
+								minlength: 4,
+								maxlength: 100
+						    },
+						    descripcion: {
+								minlength: 2,
+								maxlength: 300
+						    }
+						},
+						messages: {						
+							email: {
+							  	required: "Tenés que ingresar tu email",
+							  	email: "El formato del mail es incorrecto"
+							},
+							nombre: {
+								required: "Tenés que ingresar tu nombre",
+								minlength: "El nombre debe tener entre 2 y 40 caracteres",
+								maxlength: "El nombre debe tener entre 2 y 40 caracteres"
+							},
+							password: {
+								required: "Tenés que ingresar tu password",
+								minlength: "El password debe tener entre 4 y 15 caracteres",
+								maxlength: "El password debe tener entre 4 y 15 caracteres"
+							},
+							re_password: {
+								required: "Confirmación de password requerida",
+								equalTo: "Confirmación de password incorrecta"
+							},
+						    web: {
+								minlength: "La dirección del sitio es demasiado corta",
+								maxlength: "La dirección del sitio no puede tener mas de 100 caracteres"
+						    },
+						    facebook: {
+								minlength: "El link de facebook es demasiado corto",
+								maxlength: "El link de facebook no puede tener mas de 100 caracteres"
+						    },
+						    instagram: {
+								minlength: "El link de instagram es demasiado corto",
+								maxlength: "El link de instagram no puede tener mas de 100 caracteres"
+						    },
+						    descripcion: {
+								minlength: "La descripción es demasiado corta",
+								maxlength: "La descripción no puede contener mas de 300 caracteres"
+						    }
+						},
+						onkeyup: false,
+					  	errorPlacement: function(error, element) {
+					    	error.appendTo( element.parent().parent() );
+							element.parent().removeClass('has-success');
+					    	element.parent().parent().removeClass('has-success');
+							//element.parent().addClass('has-error');
+					    	//element.parent().parent().addClass('has-error');
+					  	},
+					    onfocusout: function (element) {
+					        $(element).valid();
+					    },
+					    success: function(label, element){
+					    	label.parent().addClass('has-success');
+					    	label.parent().parent().addClass('has-success');
+					    	label.remove();				    	
+					    },
+					    errorClass: "text-danger",
+					    errorElement: "em",
+					    submitHandler: function() { 
+
+							$.ajax({
+
+								method: "PUT",
+							  	url: "usuarios/"+usuario._id,
+							  	data: {
+							  		nombre: $('#update-form input[id=form-field-nombre]').val(),
+							  		email: $('#update-form input[id=form-field-email]').val(),
+							  		descripcion: $('#update-form input[id=form-field-descripcion]').val(),
+							  		web: $('#update-form input[id=form-field-web]').val(),
+							  		facebook: $('#update-form input[id=form-field-facebook]').val(),
+							  		instagram: $('#update-form input[id=form-field-instagram]').val()
+							  	}
+
+							}).done(function( msg ) {
+
+							    if(msg.status)
+							    {
+									$('#user-profile-2').parent().addClass('hide');
+									$('#user-profile-1').parent().removeClass('hide');
+									$.gritter.add({
+										title: 'Usuario actualizado correctamente!',
+										class_name: 'gritter-info gritter-center gritter-light',
+										position: 'center',
+										time: 2000
+									});
+							    }else{
+							    	$.each(msg.msg.errors, function(key, val){
+							    		$('<em id="'+key+'-error" class="text-danger">'+val.message+'</em>').appendTo($('#update-form input[id=form-field-'+key+']').parent());
+							    		console.log(key+' - '+val.message);
+							    	});
+							    	console.log(msg.msg.errors);
+							    }
+
+							});
+					    }
+					});
+
+					var last_gritter
+					$('#avatar').editable({
+						type: 'image',
+						name: 'avatar',
+						value: null,
+						//onblur: 'ignore',  //don't reset or hide editable onblur?!
+						image: {
+							//specify ace file input plugin's options here
+							btn_choose: 'Change Avatar',
+							droppable: true,
+							maxSize: 110000,//~100Kb
+			
+							//and a few extra ones here
+							name: 'avatar',//put the field name here as well, will be used inside the custom plugin
+							on_error : function(error_type) {//on_error function will be called when the selected file has a problem
+								if(last_gritter) $.gritter.remove(last_gritter);
+								if(error_type == 1) {//file format error
+									last_gritter = $.gritter.add({
+										title: 'File is not an image!',
+										text: 'Please choose a jpg|gif|png image!',
+										class_name: 'gritter-error gritter-center'
+									});
+								} else if(error_type == 2) {//file size rror
+									last_gritter = $.gritter.add({
+										title: 'File too big!',
+										text: 'Image size should not exceed 100Kb!',
+										class_name: 'gritter-error gritter-center'
+									});
+								}
+								else {//other error
+								}
+							},
+							on_success : function() {
+								$.gritter.removeAll();
+							}
+						},
+												    url: function(params) {
+
+							var submit_url = 'usuarios/'+usuario._id;//please modify submit_url accordingly
+							var deferred = null;
+							var avatar = '#avatar';
+
+							//if value is empty (""), it means no valid files were selected
+							//but it may still be submitted by x-editable plugin
+							//because "" (empty string) is different from previous non-empty value whatever it was
+							//so we return just here to prevent problems
+							var value = $(avatar).next().find('input[type=hidden]:eq(0)').val();
+							if(!value || value.length == 0) {
+								deferred = new $.Deferred
+								deferred.resolve();
+								return deferred.promise();
+							}
+
+							var $form = $(avatar).next().find('.editableform:eq(0)')
+							var file_input = $form.find('input[type=file]:eq(0)');
+							var pk = $(avatar).attr('data-pk');//primary key to be sent to server
+
+							var ie_timeout = null
+
+
+							if( "FormData" in window ) {
+								var formData_object = new FormData();//create empty FormData object
+								
+								//serialize our form (which excludes file inputs)
+								$.each($form.serializeArray(), function(i, item) {
+									//add them one by one to our FormData 
+									formData_object.append(item.name, item.value);							
+								});
+								//and then add files
+								$form.find('input[type=file]').each(function(){
+									var field_name = $(this).attr('name');
+									var files = $(this).data('ace_input_files');
+									if(files && files.length > 0) {
+										formData_object.append(field_name, files[0]);
+									}
+								});
+
+								//append primary key to our formData
+								formData_object.append('pk', pk);
+
+								deferred = $.ajax({
+											url: submit_url,
+										   type: 'PUT',
+									processData: false,//important
+									contentType: false,//important
+									   dataType: 'json',//server response type
+										   data: formData_object
+								})
+							}
+							else {
+								deferred = new $.Deferred
+
+								var temporary_iframe_id = 'temporary-iframe-'+(new Date()).getTime()+'-'+(parseInt(Math.random()*1000));
+								var temp_iframe = 
+										$('<iframe id="'+temporary_iframe_id+'" name="'+temporary_iframe_id+'" \
+										frameborder="0" width="0" height="0" src="about:blank"\
+										style="position:absolute; z-index:-1; visibility: hidden;"></iframe>')
+										.insertAfter($form);
+										
+								$form.append('<input type="hidden" name="temporary-iframe-id" value="'+temporary_iframe_id+'" />');
+								
+								//append primary key (pk) to our form
+								$('<input type="hidden" name="pk" />').val(pk).appendTo($form);
+								
+								temp_iframe.data('deferrer' , deferred);
+								//we save the deferred object to the iframe and in our server side response
+								//we use "temporary-iframe-id" to access iframe and its deferred object
+
+								$form.attr({
+										  action: submit_url,
+										  method: 'POST',
+										 enctype: 'multipart/form-data',
+										  target: temporary_iframe_id //important
+								});
+
+								$form.get(0).submit();
+
+								//if we don't receive any response after 30 seconds, declare it as failed!
+								ie_timeout = setTimeout(function(){
+									ie_timeout = null;
+									temp_iframe.attr('src', 'about:blank').remove();
+									deferred.reject({'status':'fail', 'message':'Timeout!'});
+								} , 30000);
+							}
+
+
+							//deferred callbacks, triggered by both ajax and iframe solution
+							deferred
+							.done(function(result) {//success
+								var res = result;//the `result` is formatted by your server side response and is arbitrary
+								if(res.status) {
+									$(avatar).get(0).src = res.url;
+									$('.profileImage').attr('src', res.url);
+								} else 
+									alert(res.message);
+							})
+							.fail(function(result) {//failure
+								alert("There was an error");
+							})
+							.always(function() {//called on both success and failure
+								if(ie_timeout) clearTimeout(ie_timeout)
+								ie_timeout = null;	
+							});
+
+							return deferred.promise();							
+						},
+						
+						success: function(response, newValue) {
+						}
+					})
+				}catch(e) {}		
+			
+				$('a[ data-original-title]').tooltip();
+
+				//change edit mode
+				$('.editProfile').on('click', function(e){
+					$('#user-profile-1').parent().addClass('hide');
+					$('#user-profile-2').parent().removeClass('hide');
+				});
+				$('.no-edit-profile').on('click', function(e){
+					$('#user-profile-2').parent().addClass('hide');
+					$('#user-profile-1').parent().removeClass('hide');
+				});
+
+			});
+		</script>
+
+		<script type="text/javascript">
+			jQuery(function($) {
+
+
+			});
+		</script>
+
+	</body>
+</html>

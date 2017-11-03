@@ -1,0 +1,366 @@
+ <!DOCTYPE html>
+<html lang="en">
+	<head>
+
+		<% include ../layouts/partial/head %>
+
+		<!-- page specific plugin styles-->
+
+	</head>
+
+	<body class="login-layout light-login">
+		<div class="main-container">
+			<div class="main-content">
+				<div class="row">
+					<div class="col-sm-10 col-sm-offset-1">
+						<div class="login-container">
+							<div class="center">
+								<h1>
+									<i class="ace-icon fa fa-leaf green"></i>
+									<span class="white" id="id-text2">SoyTuChef.com</span>
+								</h1>
+								<h4 class="blue" id="id-company-text">&copy; Colibri Desarrollos</h4>
+							</div>
+
+							<div class="space-6"></div>
+
+							<div class="position-relative">
+								<div id="login-box" class="login-box visible widget-box no-border">
+									<div class="widget-body">
+										<div class="widget-main">
+
+											<form id="login-form">
+												<fieldset>
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="text" class="form-control" name="email" placeholder="Email" />
+															<i class="ace-icon fa fa-envelope"></i>
+														</span>
+													</label>
+
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="password" class="form-control" name="password" placeholder="Contraseña" />
+															<i class="ace-icon fa fa-lock"></i>
+														</span>
+													</label>
+
+													<div class="space"></div>
+
+													<div class="clearfix">
+														<label class="inline">
+															<input type="checkbox" class="ace" />
+															<span class="lbl"> Recordarme</span>
+														</label>
+
+														<button type="button" class="width-35 pull-right btn btn-sm btn-primary" id="ingresar">
+															<i class="ace-icon fa fa-key"></i>
+															<span class="bigger-110">Ingresar</span>
+														</button>
+													</div>
+
+													<div class="space-4"></div>
+												</fieldset>
+											</form>
+
+											<div class="social-or-login center">
+												<span class="bigger-110">Tambien puedes ingresar con</span>
+											</div>
+
+											<div class="space-6"></div>
+
+											<div class="social-login center">
+												<a class="btn btn-primary">
+													<i class="ace-icon fa fa-facebook"></i>
+												</a>
+
+												<a class="btn btn-danger">
+													<i class="ace-icon fa fa-google-plus"></i>
+												</a>
+											</div>
+										</div><!-- /.widget-main -->
+
+										<div class="toolbar clearfix">
+											<div>
+												<a href="#" data-target="#forgot-box" class="forgot-password-link">
+													<i class="ace-icon fa fa-arrow-left"></i>
+													¿Olvidaste tu contraseña?
+												</a>
+											</div>
+
+											<div>
+												<a href="#" data-target="#signup-box" class="user-signup-link">
+													Registrarme
+													<i class="ace-icon fa fa-arrow-right"></i>
+												</a>
+											</div>
+										</div>
+									</div><!-- /.widget-body -->
+								</div><!-- /.login-box -->
+
+								<div id="forgot-box" class="forgot-box widget-box no-border">
+									<div class="widget-body">
+										<div class="widget-main">
+											<h4 class="header red lighter bigger">
+												<i class="ace-icon fa fa-key"></i>
+												Recupero de contraseña
+											</h4>
+
+											<div class="space-6"></div>
+											<p>
+												Ingresa tu email y te enviaremos las instrucciones para recuperar tu contraseña
+											</p>
+
+											<form>
+												<fieldset>
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="email" class="form-control" placeholder="Email" />
+															<i class="ace-icon fa fa-envelope"></i>
+														</span>
+													</label>
+
+													<div class="clearfix">
+														<button type="button" class="width-35 pull-right btn btn-sm btn-danger">
+															<i class="ace-icon fa fa-lightbulb-o"></i>
+															<span class="bigger-110">Enviar!</span>
+														</button>
+													</div>
+												</fieldset>
+											</form>
+										</div><!-- /.widget-main -->
+
+										<div class="toolbar center">
+											<a href="#" data-target="#login-box" class="back-to-login-link">
+												Volver al login
+												<i class="ace-icon fa fa-arrow-right"></i>
+											</a>
+										</div>
+									</div><!-- /.widget-body -->
+								</div><!-- /.forgot-box -->
+
+								<div id="signup-box" class="signup-box widget-box no-border">
+									<div class="widget-body">
+										<div class="widget-main">
+											<h4 class="header green lighter bigger">
+												<i class="ace-icon fa fa-users blue"></i>
+												Formulario de registro
+											</h4>
+
+											<div class="space-6"></div>
+											<p> Ingresa tus datos a continuación: </p>
+
+											<form id="registrarme-form">
+												<fieldset>
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="email" name="email" class="form-control" placeholder="Email" />
+															<i class="ace-icon fa fa-envelope"></i>
+															<span class="text-danger errorPlacement"></span>
+														</span>
+
+													</label>
+
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="text" name="nombre" class="form-control" placeholder="Nombre Completo" />
+															<i class="ace-icon fa fa-user"></i>
+															<span class="text-danger errorPlacement"></span>
+														</span>
+													</label>
+
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="password" name="password" id="password" class="form-control" placeholder="Contraseña" />
+															<i class="ace-icon fa fa-lock"></i>
+															<span class="text-danger errorPlacement"></span>
+														</span>
+													</label>
+
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="password" name="re_password" class="form-control" placeholder="Confirmación de contraseña" />
+															<i class="ace-icon fa fa-retweet"></i>
+															<span class="text-danger errorPlacement"></span>
+														</span>
+													</label>
+
+													<label class="block">
+														<input type="checkbox" name="terminos" class="ace" />
+														<span class="lbl">
+															Acepto los 
+															<a href="#">términos y condiciones</a>
+														</span>
+													</label>
+
+													<div class="space-24"></div>
+
+													<div class="clearfix">
+
+														<button type="submit" class="width-100 btn btn-sm btn-success" id="registrarme">
+															<span class="bigger-110">Registrarme</span>
+
+															<i class="ace-icon fa fa-arrow-right icon-on-right"></i>
+														</button>
+													</div>
+												</fieldset>
+											</form>
+										</div>
+
+										<div class="toolbar center">
+											<a href="#" data-target="#login-box" class="back-to-login-link">
+												<i class="ace-icon fa fa-arrow-left"></i>
+												Volver al login
+											</a>
+										</div>
+									</div><!-- /.widget-body -->
+								</div><!-- /.signup-box -->
+							</div><!-- /.position-relative -->
+						</div>
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div><!-- /.main-content -->
+		</div><!-- /.main-container -->
+
+		<% include ../layouts/partial/comon_footer %>
+
+		<!-- page specific plugin scripts -->
+		<script type="text/javascript">
+			jQuery(function($) {
+				$(document).on('click', '.toolbar a[data-target]', function(e) {
+					e.preventDefault();
+					var target = $(this).data('target');
+					$('.widget-box.visible').removeClass('visible');//hide others
+					$(target).addClass('visible');//show target
+				});
+
+				$(document).on('click', '#ingresar', function(e){
+					e.preventDefault();
+					$.ajax({
+
+						method: "POST",
+					  	url: "/login",
+					  	data: {
+					  		email: $('#login-form input[name=email]').val(),
+					  		password: $('#login-form input[name=password]').val()
+					  	}
+
+					}).done(function( msg ) {
+
+					    if(msg.status)
+					    {
+					    	window.location.href = "/";
+					    }else{
+					    	$('<em class="text-danger">'+msg.msg+'</em>').appendTo($("#login-form input[name=password]").parent());
+					    }
+
+					});
+				});
+				
+
+				// Form validations
+				$("#registrarme-form").validate({
+					rules:{
+					    email: {
+					      required: true,
+					      email: true
+					    },
+					    nombre: {
+					    	required: true,
+							minlength: 2,
+							maxlength: 40
+					    },
+					    password: {
+					    	required: true,
+					    	minlength: 4,
+					    	maxlength: 15
+					    },
+					    re_password: {
+					    	required: true,
+					    	minlength: 4,
+					    	maxlength: 15,
+					    	equalTo: "#password"
+					    },
+					    terminos: {
+					    	required: true
+					    }
+					},
+					messages: {						
+						email: {
+						  	required: "Tenés que ingresar tu email",
+						  	email: "El formato del mail es incorrecto"
+						},
+						nombre: {
+							required: "Tenés que ingresar tu nombre",
+							minlength: "El nombre debe tener entre 2 y 40 caracteres",
+							maxlength: "El nombre debe tener entre 2 y 40 caracteres"
+						},
+						password: {
+							required: "Tenés que ingresar tu password",
+							minlength: "El password debe tener entre 4 y 15 caracteres",
+							maxlength: "El password debe tener entre 4 y 15 caracteres"
+						},
+						re_password: {
+							required: "Confirmación de password requerida",
+							equalTo: "Confirmación de password incorrecta"
+						},
+						terminos :{
+							required: "Es necesario que acepte los terminos y condiciones"
+						}
+					},
+					onkeyup: false,
+				  	errorPlacement: function(error, element) {
+				    	error.appendTo( element.parent() );
+				  	},
+				    onfocusout: function (element) {
+				        $(element).valid();
+				    },
+				    success: function(label, element){
+				    	label.parent().addClass('has-success');
+				    	label.remove();				    	
+				    },
+				    errorClass: "text-danger",
+				    errorElement: "em",
+				    submitHandler: function() { 
+
+						$.ajax({
+
+							method: "POST",
+						  	url: "/usuarios",
+						  	data: {
+						  		email: $('#registrarme-form input[name=email]').val(),
+						  		password: $('#registrarme-form input[name=password]').val(),
+						  		re_password: $('#registrarme-form input[name=re_password]').val(),
+						  		nombre: $('#registrarme-form input[name=nombre]').val(),
+						  		terminos: $('#registrarme-form input[name=terminos]').val()
+						  	}
+
+						}).done(function( msg ) {
+
+						    if(msg.status)
+						    {
+								var mensaje = '\
+												<div class="alert alert-block alert-success">\
+													<p>\
+														<strong>\
+															<i class="ace-icon fa fa-check"></i>\
+															Felicitaciones!\
+														</strong>\
+														Tu usuario fue creado. Te enviamos un e-mail para que confirmes tu correo.\
+													</p>\
+												</div>';
+						    	$('#signup-box .widget-main').html(mensaje);
+						    }else{
+						    	$.each(msg.msg.errors, function(key, val){
+						    		$('<em id="'+key+'-error" class="text-danger">'+val.message+'</em>').appendTo($('#registrarme-form input[name='+key+']').parent());
+						    	});
+						    }
+
+						});
+				    }
+				});
+			});
+		</script>
+
+	</body>
+</html>
